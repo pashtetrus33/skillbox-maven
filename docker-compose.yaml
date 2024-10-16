@@ -1,0 +1,17 @@
+# С версии Docker Compose 1.27.0 больше не требуется указывать версию в файле docker-compose.yml
+
+services:
+  mysql:
+    image: mysql:latest  # Можно указать конкретную версию, если необходимо
+    ports:
+      - "9977:3306"  # Перенаправляем порт 9977 на 3306
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword  # Корневой пароль (обязательно указывайте для MySQL)
+      MYSQL_USER: testuser  # Пользователь
+      MYSQL_PASSWORD: testpassword  # Пароль для пользователя
+      MYSQL_DATABASE: testdb  # Опционально: создаем базу данных
+    volumes:
+      - mysql_data:/var/lib/mysql  # Для сохранения данных между перезапусками
+
+volumes:
+  mysql_data:  # Определяем volume для сохранения данных
